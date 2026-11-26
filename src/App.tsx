@@ -10,6 +10,7 @@ function App() {
   const categories = getCategories(products);
   const cheapProducts = filterProducts(products, { maxPrice: 300000, sort: "asc" });
   const electronics = filterProducts(products, { category: "Điện tử" });
+  const lowStockProducts = products.filter((p) => p.stock >= 1 && p.stock <= 5);
 
   return (
     <>
@@ -31,9 +32,15 @@ function App() {
         <div id="featured">
           <ProductList title="Sản phẩm nổi bật" items={products} />
         </div>
+
+        <div id="low-stock">
+          <ProductList title="Sản phẩm sắp hết hàng" items={lowStockProducts} />
+        </div>
+
         <div id="budget">
           <ProductList title="Giá dưới 300.000 đ" items={cheapProducts} />
         </div>
+
         <div id="electronics">
           <ProductList title="Đồ điện tử" items={electronics} />
         </div>

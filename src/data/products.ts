@@ -54,7 +54,7 @@ export const products: Product[] = [
     price: 890000,
     image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=500&q=80",
     category: "Điện tử",
-    stock: 6,
+    stock: 5,
   },
   {
     id: 7,

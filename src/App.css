@@ -104,19 +104,20 @@ header nav a:hover::after {
   gap: 8px;
   padding: 8px 16px;
   border-radius: 999px;
-  background: var(--brand-soft);
-  border: 1px solid #f5cfd6;
-  color: var(--brand);
+  background: var(--brand);
+  border: 1px solid var(--brand);
+  color: #ffffff;
   font-size: 13.5px;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .cart-btn:hover {
-  background: var(--brand);
+  background: var(--brand-hover);
+  border-color: var(--brand-hover);
   color: #ffffff;
-  border-color: var(--brand);
+  transform: translateY(-1px);
 }
 
 .cart-badge {
@@ -127,11 +128,10 @@ header nav a:hover::after {
   height: 22px;
   padding: 0 6px;
   border-radius: 999px;
-  background: var(--brand);
-  color: #ffffff;
+  background: #ffffff;
+  color: var(--brand);
   font-size: 12px;
   font-weight: 700;
-  transition: all 0.2s ease;
 }
 
 .cart-btn:hover .cart-badge {
@@ -290,12 +290,18 @@ main section {
   margin-top: 44px;
 }
 
+main > .container > div > section.container {
+  max-width: none;
+  margin: 52px 0 0;
+  padding: 0;
+}
+
 main section h2 {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 22px;
   font-weight: 700;
   color: var(--text-main);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -303,40 +309,40 @@ main section h2 {
 
 main section h2::before {
   content: "";
-  width: 4px;
-  height: 22px;
-  border-radius: 4px;
+  width: 5px;
+  height: 24px;
+  border-radius: 999px;
   background: var(--brand);
 }
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
 }
 
 /* ---------- Product Card (Aligned & Interactive) ---------- */
 .product-card {
   background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border: 1px solid rgba(230, 225, 216, 0.8);
+  border-radius: 18px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 16px rgba(31, 29, 26, 0.045);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-  border-color: #d5cfc4;
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(31, 29, 26, 0.1);
+  border-color: #d9cfc2;
 }
 
 .product-image-wrap {
   position: relative;
-  aspect-ratio: 4 / 3;
-  background: var(--bg-subtle);
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(145deg, #f8f6f2, #eee9e1);
   overflow: hidden;
 }
 
@@ -344,11 +350,61 @@ main section h2::before {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .product-card:hover .product-image-wrap img {
+  transform: scale(1.07);
+}
+
+.favorite-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid rgba(230, 225, 216, 0.9);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--text-muted);
+  box-shadow: 0 3px 10px rgba(31, 29, 26, 0.1);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.favorite-btn svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: fill 0.2s ease, transform 0.2s ease;
+}
+
+.favorite-btn:hover,
+.favorite-btn.is-favorite {
+  color: var(--brand);
+}
+
+.favorite-btn:hover {
+  transform: scale(1.08);
+}
+
+.favorite-btn.is-favorite svg {
+  fill: currentColor;
   transform: scale(1.05);
+}
+
+.favorite-btn:focus-visible {
+  outline: 3px solid rgba(127, 0, 25, 0.35);
+  outline-offset: 3px;
 }
 
 /* ---------- Out of Stock State (Shopee / Muji Style) ---------- */
@@ -367,10 +423,8 @@ main section h2::before {
 
 .badge-out {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  left: auto;
-  transform: none;
+  top: 14px;
+  left: 14px;
   z-index: 2;
   width: auto;
   height: auto;
@@ -387,11 +441,11 @@ main section h2::before {
 }
 .badge-low {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  padding: 4px 10px;
+  top: 14px;
+  left: 14px;
+  padding: 5px 11px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   backdrop-filter: blur(6px);
   background: rgba(255, 255, 255, 0.92);
@@ -400,26 +454,31 @@ main section h2::before {
 }
 
 .product-body {
-  padding: 16px 18px 18px;
+  padding: 16px 16px 17px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 .product-category {
-  font-size: 11px;
+  align-self: flex-start;
+  font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  margin-bottom: 4px;
+  letter-spacing: 0.08em;
+  color: var(--brand);
+  background: var(--brand-soft);
+  border-radius: 999px;
+  padding: 4px 9px;
+  margin-bottom: 9px;
 }
 
 .product-title {
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--text-main);
-  margin-bottom: 12px;
+  line-height: 1.45;
+  margin-bottom: 16px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -430,30 +489,34 @@ main section h2::before {
   margin-top: auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: stretch;
+  gap: 10px;
 }
 
 .product-price {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--brand);
+  white-space: nowrap;
 }
 
 .btn {
   width: 100%;
-  padding: 10px 14px;
+  padding: 10px 12px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--brand);
   color: #ffffff;
-  font-size: 13.5px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
 }
 
 .btn:hover:not(:disabled) {
   background: var(--brand-hover);
+  box-shadow: 0 5px 12px rgba(127, 0, 25, 0.2);
 }
 
 .btn:active:not(:disabled) {
@@ -465,16 +528,69 @@ main section h2::before {
   color: var(--text-muted);
   border: 1px solid var(--border);
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 /* ---------- Footer ---------- */
+/* ---------- Footer 3 cột tối giản ---------- */
+.site-footer,
 footer {
   border-top: 1px solid var(--border);
-  background: var(--bg-surface);
-  padding: 28px 24px;
-  text-align: center;
-  font-size: 13.5px;
+  background: var(--bg-subtle);
   color: var(--text-muted);
+  font-size: 13.5px;
+  padding: 0;
+  text-align: left;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 24px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.footer-brand strong {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 17px;
+  color: var(--brand);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.footer-brand p {
+  max-width: 300px;
+  font-size: 13px;
+}
+
+.footer-links,
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-links a {
+  color: var(--text-main);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--brand);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px 22px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 12.5px;
 }
 
 @media (max-width: 768px) {
@@ -489,5 +605,53 @@ footer {
   }
   header nav {
     gap: 14px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  main > .container > div > section.container {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-body {
+    padding: 13px 12px 14px;
+  }
+
+  .product-title {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .product-footer {
+    gap: 10px;
+  }
+
+  .product-price {
+    font-size: 15px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .product-image-wrap img,
+  .btn,
+  .favorite-btn,
+  .favorite-btn svg {
+    transition: none;
   }
 }

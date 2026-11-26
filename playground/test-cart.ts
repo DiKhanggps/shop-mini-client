@@ -1,14 +1,20 @@
+
 import { products } from "../src/data/products.ts";
 import { addToCart, updateQuantity, removeFromCart, countItems, calcTotal } from "../src/utils/cart.ts";
 import type { CartItem } from "../src/utils/cart.ts";
 import { formatPrice } from "../src/utils/format.ts";
-import { filterProducts, getCategories } from "../src/utils/product.ts";
+import {
+  filterProducts,
+  getCategories,
+  searchByPriceRange,
+  groupByCategory,
+} from "../src/utils/product.ts";
 
 let cart: CartItem[] = [];
-cart = addToCart(cart, products[0]);      // Sản phẩm 1 x1
-cart = addToCart(cart, products[0], 2);   // Sản phẩm 1 x3
-cart = addToCart(cart, products[3]);      // Sản phẩm 4 x1
-console.log("Số sản phẩm:", countItems(cart));   // 4
+cart = addToCart(cart, products[0]);
+cart = addToCart(cart, products[0], 2);
+cart = addToCart(cart, products[3]);
+console.log("Số sản phẩm:", countItems(cart));
 console.log("Tổng tiền:", formatPrice(calcTotal(cart)));
 
 cart = updateQuantity(cart, products[0].id, 1);
@@ -24,3 +30,10 @@ console.log(
   "Tìm 'áo', tối đa 300k:",
   filterProducts(products, { keyword: "áo", maxPrice: 300000 }).map((p) => p.name)
 );
+
+
+console.log(
+  "Giá từ 150k đến 500k:",
+  searchByPriceRange(products, 150000, 500000).map((p) => `${p.name} (${formatPrice(p.price)})`)
+);
+console.log("Thống kê theo danh mục:", groupByCategory(products));
