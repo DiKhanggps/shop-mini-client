@@ -26,7 +26,7 @@ export const products: Product[] = [
   },
   {
     id: 3,
-    name: "Đồng hồ treo tường tối giản",
+    name: "Đồng hồ treo tường",
     price: 790000,
     image: "https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?auto=format&fit=crop&w=500&q=80",
     category: "Gia dụng",
@@ -34,7 +34,7 @@ export const products: Product[] = [
   },
   {
     id: 4,
-    name: "Bình nước thủy tinh nắp gỗ",
+    name: "Bình nước thủy tinh",
     price: 165000,
     image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=500&q=80",
     category: "Gia dụng",
@@ -42,7 +42,7 @@ export const products: Product[] = [
   },
   {
     id: 5,
-    name: "Dép đi trong nhà vải cotton",
+    name: "Dép đi trong nhà",
     price: 199000,
     image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=500&q=80",
     category: "Gia dụng",
@@ -92,7 +92,7 @@ export const products: Product[] = [
     id: 11,
     name: "Sổ tay lò xo giấy",
     price: 69000,
-    image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=500&q=80",
+    image: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&w=500&q=80",
     category: "Văn phòng phẩm",
     stock: 25,
   },

@@ -1,17 +1,20 @@
 export default function Header() {
   return (
-    <header className="header">
-      <div className="container header-inner">
-        <a href="/" className="logo">
-          The<span>MuziHouse</span>
+    <header className="site-header">
+      <div className="header-inner">
+        <a href="#" className="logo">
+          TheMuziHouse
         </a>
-        <nav className="nav">
-          <a href="/">Trang chủ</a>
-          <a href="/products">Sản phẩm</a>
-          <a href="/about">Giới thiệu</a>
+
+        <nav className="nav-links">
+          <a href="#featured">Trang chủ</a>
+          <a href="#budget">Sản phẩm</a>
+          <a href="#electronics">Giới thiệu</a>
         </nav>
-        <a href="/cart" className="cart-link">
-          🛒 Giỏ hàng (0)
+
+        <a href="#cart" className="cart-btn">
+          <span>🛒 Giỏ hàng</span>
+          <span className="cart-badge">0</span>
         </a>
       </div>
     </header>
